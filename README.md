@@ -44,10 +44,22 @@ To activate Readium LCP support in the Android test-app you’ll have to:
 Send a request to EDRLab (contact at edrlab.org) for a pre-compiled test library named “liblcp.aar”. As this lib will have to be replaced with a production grade pre-compiled library when implementers have signed the Readium LCP Terms of Use, we think it is easier to provide a precompiled lib rather than source code. It will also be a proper way to get in touch with the managers of the Readium LCP network.
 
 1. Add Module “liblcp.aar”
-....
+  1. select "File -> New -> New Module" in Android Studio 
+  2. select "import aar package"
+  3. select the "liblcp.aar" file 
+  4. confirm the next sceens
 
 2. Add Module "r2-lcp"
-....
+  1. git clone https://github.com/readium/r2-lcp-kotlin.git
+  2. select "File -> New -> Import Module" in Adnroid Studio
+  3. select the directory of the r2-lcp-kotlin module
+  4. confirm the next screens
+
+your gradle file should now look like this:
+
+`include ':r2-testapp', ':r2-lcp'`
+
+`project(':r2-lcp').projectDir = new File('r2-lcp-kotlin/r2-lcp')`
 
 
 
