@@ -26,8 +26,12 @@ A test app for the Kotlin implementation of Readium-2. Stable builds are [availa
 - [Streamer](https://github.com/readium/r2-streamer-kotlin) (The parser/server) [![Release](https://jitpack.io/v/readium/r2-streamer-kotlin.svg)](https://jitpack.io/#readium/r2-streamer-kotlin) 
 - [Navigator](https://github.com/readium/r2-navigator-kotlin) (The bare ViewControllers for displaying parsed resources) [![Release](https://jitpack.io/v/readium/r2-navigator-kotlin.svg)](https://jitpack.io/#readium/r2-navigator-kotlin)
 - [Readium CSS](https://github.com/readium/readium-css) (Handles styles, layout and user settings)
+- [Readium LCP](https://github.com/readium/r2-lcp-kotlin) 
+
 
 ## Install and run the testapp
+
+git clone https://github.com/readium/r2-testapp-kotlin.git
 
 
 
