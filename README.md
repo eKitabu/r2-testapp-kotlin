@@ -57,10 +57,10 @@ Send a request to EDRLab (contact at edrlab.org) for a pre-compiled test library
 
 your gradle file should now look like this:
 
-`include ':r2-testapp', ':r2-lcp'`
+`include ':r2-testapp', ':r2-lcp', ':liblcp'`
 
 `project(':r2-lcp').projectDir = new File('r2-lcp-kotlin/r2-lcp')`
 
-
+`project(':liblcp').projectDir = new File('liblcp')`
 
 
