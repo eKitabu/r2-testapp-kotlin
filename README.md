@@ -5,7 +5,3 @@ r2-streamer-kotlin [![Release](https://jitpack.io/v/readium/r2-streamer-kotlin.s
 r2-navigator-kotlin [![Release](https://jitpack.io/v/readium/r2-navigator-kotlin.svg)](https://jitpack.io/#readium/r2-navigator-kotlin) 
 
 # r2-testapp-kotlin
-
-### Test app using Jitpack.io
-
-### Test app used as GitHub Submodule
