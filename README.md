@@ -31,3 +31,20 @@ A test app for the Kotlin implementation of Readium-2. Stable builds are [availa
 
 
 
+### Add Readium LCP support
+
+The support of Readium LCP in the R2 Reader Android test-app is still prototypal. Activation of Readium LCP support in the codebase is therefore still highly manual. LCP support will be the default situation when the test-app is Readium LCP Certified by EDRLab (which is still not the case, they are still some issues to solve).  
+
+To activate Readium LCP support in the Android test-app you’ll have to:
+
+Send a request to EDRLab (contact at edrlab.org) for a pre-compiled test library named “liblcp.aar”. As this lib will have to be replaced with a production grade pre-compiled library when implementers have signed the Readium LCP Terms of Use, we think it is easier to provide a precompiled lib rather than source code. It will also be a proper way to get in touch with the managers of the Readium LCP network.
+
+1. Add Module “liblcp.aar”
+....
+
+2. Add Module "r2-lcp"
+....
+
+
+
+
