@@ -9,11 +9,6 @@ package org.readium.r2.testapp
 
 
 // uncomment for lcp
-/*
-import org.readium.r2.lcp.LcpHttpService
-import org.readium.r2.lcp.LcpLicense
-import org.readium.r2.lcp.LcpSession
- */
 
 import android.content.ContentResolver
 import android.content.Context
@@ -479,7 +474,6 @@ class CatalogActivity : AppCompatActivity(), BooksAdapter.RecyclerViewClickListe
             }
 
             // uncomment for lcp
-            /*
                 else if (uriString != null && lcp == true) {
                     val uri: Uri? = Uri.parse(uriString)
                     if (uri != null) {
@@ -524,7 +518,6 @@ class CatalogActivity : AppCompatActivity(), BooksAdapter.RecyclerViewClickListe
                         thread.start()
                     }
                 }
-            */
         }
     }
 
@@ -777,7 +770,6 @@ class CatalogActivity : AppCompatActivity(), BooksAdapter.RecyclerViewClickListe
                         pub.container.drm?.let { drm: Drm ->
                             if (drm.brand == Drm.Brand.Lcp) {
                                 // uncomment for lcp
-                                /*
                                 handleLcpPublication(publicationPath, drm, {
                                     val pair = parser.parseRemainingResource(pub.container, publication, it)
                                     pub.container = pair.first
@@ -807,7 +799,6 @@ class CatalogActivity : AppCompatActivity(), BooksAdapter.RecyclerViewClickListe
                                     // Do nothing
                                 }).get()
 
-                                */
                             }
                         } ?: run {
                             startActivity(intentFor<R2EpubActivity>("publicationPath" to publicationPath, "epubName" to book.fileName, "publication" to publication))
@@ -829,7 +820,6 @@ class CatalogActivity : AppCompatActivity(), BooksAdapter.RecyclerViewClickListe
     }
 
     // uncomment for lcp
-/*
     private fun handleLcpPublication(publicationPath: String, drm: Drm, parsingCallback: (drm: Drm) -> Unit, callback: (drm: Drm) -> Unit, callbackUI: () -> Unit): Promise<Unit, Exception> {
 
         val lcpHttpService = LcpHttpService()
@@ -891,7 +881,6 @@ class CatalogActivity : AppCompatActivity(), BooksAdapter.RecyclerViewClickListe
             }
         }
     }
-*/
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
