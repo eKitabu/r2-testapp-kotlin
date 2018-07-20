@@ -31,7 +31,8 @@ A test app for the Kotlin implementation of Readium-2. Stable builds are [availa
 
 ## Install and run the testapp
 
-git clone https://github.com/readium/r2-testapp-kotlin.git
+1. git clone https://github.com/readium/r2-testapp-kotlin.git
+2. open project in Android Studio 3.1.3
 
 
 
