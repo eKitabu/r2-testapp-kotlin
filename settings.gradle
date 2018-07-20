@@ -1,1 +1,2 @@
-include ':r2-testapp'
+include ':r2-testapp', ':liblcp'
+project(':liblcp').projectDir = new File('liblcp')
