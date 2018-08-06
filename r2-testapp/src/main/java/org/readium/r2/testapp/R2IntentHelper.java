@@ -28,7 +28,7 @@ public class R2IntentHelper {
     }
 
     public Intent catalogActivityIntent(Context context, Uri uri, boolean lcp) {
-        Intent i = new Intent(context, CatalogActivity.class);
+        Intent i = new Intent(context, CatalogActivityPlusLcp.class);
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         i.putExtra(LCP, lcp);
         i.putExtra(URI, uri.toString());

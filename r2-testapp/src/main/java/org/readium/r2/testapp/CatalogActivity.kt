@@ -93,6 +93,8 @@ open class CatalogActivity : AppCompatActivity(), BooksAdapter.RecyclerViewClick
     private lateinit var catalogView: RecyclerView
     private lateinit var alertDialog: AlertDialog
 
+    protected var listener:CatalogActivity? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -814,16 +816,19 @@ open class CatalogActivity : AppCompatActivity(), BooksAdapter.RecyclerViewClick
     override fun parseIntentLcpl(uriString: String) {
         // use CatalogActivityPlusLcp for LCP support
         // update AndroidManifest <activity android:name=".CatalogActivityPlusLcp">
+        listener?.parseIntentLcpl(uriString)
     }
 
     override fun prepareAndStartActivityWithLCP(drm: Drm, pub: PubBox, book: Book, file: File, publicationPath: String, parser: EpubParser, publication: Publication) {
         // use CatalogActivityPlusLcp for LCP support
         // update AndroidManifest <activity android:name=".CatalogActivityPlusLcp">
+        listener?.prepareAndStartActivityWithLCP(drm,pub,book,file,publicationPath,parser,publication)
     }
 
     override fun processLcpActivityResult(uri: Uri, it: Uri, progress: ProgressDialog) {
         // use CatalogActivityPlusLcp for LCP support
         // update AndroidManifest <activity android:name=".CatalogActivityPlusLcp">
+        listener?.processLcpActivityResult(uri,it,progress)
     }
 
 }

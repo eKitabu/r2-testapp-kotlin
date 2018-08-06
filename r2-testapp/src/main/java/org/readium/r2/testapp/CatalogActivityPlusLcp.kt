@@ -11,6 +11,7 @@ package org.readium.r2.testapp
 
 import android.app.ProgressDialog
 import android.net.Uri
+import android.os.Bundle
 import android.widget.EditText
 import com.mcxiaoke.koi.HASH
 import nl.komponents.kovenant.Promise
@@ -31,9 +32,55 @@ import org.readium.r2.shared.drm.Drm
 import org.readium.r2.streamer.parser.EpubParser
 import org.readium.r2.streamer.parser.PubBox
 import java.io.File
+import java.net.URL
 
 
-class CatalogActivityPlusLcp : CatalogActivity() {
+class CatalogActivityPlusLcp : CatalogActivity(), LcpFunctions {
+
+    override fun parseIntentLcpl(uriString: String) {
+        val uri: Uri? = Uri.parse(uriString)
+        if (uri != null) {
+            val progress = indeterminateProgressDialog(getString(R.string.progress_wait_while_downloading_book))
+            progress.show()
+            val thread = Thread(Runnable {
+                val lcpLicense = LcpLicense(URL(uri.toString()).openStream().readBytes(), this)
+                task {
+                    lcpLicense.fetchStatusDocument().get()
+                } then {
+                    lcpLicense.checkStatus()
+                    lcpLicense.updateLicenseDocument().get()
+                } then {
+                    lcpLicense.areRightsValid()
+                    lcpLicense.register()
+                    lcpLicense.fetchPublication()
+                } then {
+                    it?.let {
+                        lcpLicense.moveLicense(it, URL(uri.toString()).openStream().readBytes())
+                    }
+                    it!!
+                } successUi { path ->
+                    val file = File(path)
+                    try {
+                        runOnUiThread({
+                            val parser = EpubParser()
+                            val pub = parser.parse(path)
+                            if (pub != null) {
+                                val pair = parser.parseRemainingResource(pub.container, pub.publication, pub.container.drm)
+                                pub.container = pair.first
+                                pub.publication = pair.second
+                                prepareToServe(pub, file.name, file.absolutePath, true, true)
+                                progress.dismiss()
+
+                            }
+                        })
+                    } catch (e: Throwable) {
+                        e.printStackTrace()
+                    }
+                }
+            })
+            thread.start()
+        }
+    }
 
     override fun prepareAndStartActivityWithLCP(drm: Drm, pub: PubBox, book: Book, file: File, publicationPath: String, parser: EpubParser, publication: Publication) {
         if (drm.brand == Drm.Brand.Lcp) {
