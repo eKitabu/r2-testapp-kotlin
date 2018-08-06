@@ -37,6 +37,11 @@ import java.net.URL
 
 class CatalogActivityPlusLcp : CatalogActivity(), LcpFunctions {
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        listener = this
+    }
+
     override fun parseIntentLcpl(uriString: String) {
         val uri: Uri? = Uri.parse(uriString)
         if (uri != null) {
